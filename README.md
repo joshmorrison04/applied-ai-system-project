@@ -32,6 +32,23 @@ Energy closeness: 30 × (1 - |user_energy - song_energy|)
 All songs are scored and sorted from highest to lowest. The top-ranked songs are returned as recommendations.
 
 ---
+```mermaid
+flowchart TD
+    A[User Profile: genre, mood, energy] --> B[Loop through every song in CSV]
+    B --> C{Genre match?}
+    C -->|Yes| D[+2.0 points]
+    C -->|No| E[+0 points]
+    D --> F{Mood match?}
+    E --> F
+    F -->|Yes| G[+1.0 point]
+    F -->|No| H[+0 points]
+    G --> I[+ Energy similarity score]
+    H --> I
+    I --> J[Total score for song]
+    J --> B
+    B -->|All songs scored| K[Sort by score descending]
+    K --> L[Return Top K recommendations]
+```
 
 ## Getting Started
 
