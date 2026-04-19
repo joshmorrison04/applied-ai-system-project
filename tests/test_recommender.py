@@ -1,3 +1,5 @@
+# Unit tests for the recommender module: verifies that song loading, scoring,
+# and recommendation logic behave correctly across a range of scenarios.
 from src.recommender import Song, UserProfile, Recommender
 
 def make_small_recommender() -> Recommender:

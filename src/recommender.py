@@ -1,3 +1,5 @@
+# Core recommendation engine: defines the Song and UserProfile data models,
+# loads song data from CSV, and implements the scoring logic used to generate recommendations.
 import csv
 from typing import List, Dict, Tuple, Optional
 from dataclasses import dataclass
@@ -74,17 +76,21 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, str]:
     score = 0.0
     reasons = []
 
-    if song['genre'] == user_prefs['genre']:
+    if user_prefs.get("genre") is not None and song["genre"] == user_prefs["genre"]:
         score += 2.0
         reasons.append("genre match (+2.0)")
 
-    if song['mood'] == user_prefs['mood']:
+    if user_prefs.get("mood") is not None and song["mood"] == user_prefs["mood"]:
         score += 1.0
         reasons.append("mood match (+1.0)")
 
-    energy_sim = 1 - abs(user_prefs['energy'] - song['energy'])
-    score += energy_sim
-    reasons.append(f"energy similarity (+{energy_sim:.2f})")
+    if user_prefs.get("energy") is not None:
+        energy_sim = 1 - abs(user_prefs["energy"] - song["energy"])
+        score += energy_sim
+        reasons.append(f"energy similarity (+{energy_sim:.2f})")
+
+    if not reasons:
+        reasons.append("no strong attribute match")
 
     explanation = ", ".join(reasons)
     return score, explanation
