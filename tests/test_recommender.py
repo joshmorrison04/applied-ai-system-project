@@ -1,63 +1,57 @@
 # Unit tests for the recommender module: verifies that song loading, scoring,
-# and recommendation logic behave correctly across a range of scenarios.
-from src.recommender import Song, UserProfile, Recommender
+# and recommendation logic behave correctly using standalone functions.
 
-def make_small_recommender() -> Recommender:
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
+
+from recommender import load_songs, score_song, recommend_songs
+
+def test_genre_match_adds_points():
+    user = {"genre": "pop", "mood": None, "energy": None}
+    song = {"genre": "pop", "mood": "happy", "energy": 0.8, "title": "Test"}
+    score, explanation = score_song(user, song)
+    assert score == 2.0
+    assert "genre match" in explanation
+
+
+def test_mood_match_adds_points():
+    user = {"genre": None, "mood": "chill", "energy": None}
+    song = {"genre": "lofi", "mood": "chill", "energy": 0.4, "title": "Test"}
+    score, explanation = score_song(user, song)
+    assert score == 1.0
+    assert "mood match" in explanation
+
+
+def test_energy_similarity_scoring():
+    user = {"genre": None, "mood": None, "energy": 0.8}
+    song = {"genre": "pop", "mood": "happy", "energy": 0.8, "title": "Test"}
+    score, explanation = score_song(user, song)
+    assert score == 1.0
+    assert "energy similarity" in explanation
+
+
+def test_full_match_scores_highest():
+    user = {"genre": "pop", "mood": "happy", "energy": 0.8}
+    song = {"genre": "pop", "mood": "happy", "energy": 0.8, "title": "Test"}
+    score, _ = score_song(user, song)
+    assert score == 4.0
+
+
+def test_no_preferences_returns_zero():
+    user = {"genre": None, "mood": None, "energy": None}
+    song = {"genre": "pop", "mood": "happy", "energy": 0.8, "title": "Test"}
+    score, explanation = score_song(user, song)
+    assert score == 0.0
+    assert "no strong attribute match" in explanation
+
+
+def test_recommend_songs_returns_sorted():
     songs = [
-        Song(
-            id=1,
-            title="Test Pop Track",
-            artist="Test Artist",
-            genre="pop",
-            mood="happy",
-            energy=0.8,
-            tempo_bpm=120,
-            valence=0.9,
-            danceability=0.8,
-            acousticness=0.2,
-        ),
-        Song(
-            id=2,
-            title="Chill Lofi Loop",
-            artist="Test Artist",
-            genre="lofi",
-            mood="chill",
-            energy=0.4,
-            tempo_bpm=80,
-            valence=0.6,
-            danceability=0.5,
-            acousticness=0.9,
-        ),
+        {"genre": "lofi", "mood": "chill", "energy": 0.4, "title": "Song A", "artist": "A"},
+        {"genre": "pop", "mood": "happy", "energy": 0.8, "title": "Song B", "artist": "B"},
     ]
-    return Recommender(songs)
-
-
-def test_recommend_returns_songs_sorted_by_score():
-    user = UserProfile(
-        favorite_genre="pop",
-        favorite_mood="happy",
-        target_energy=0.8,
-        likes_acoustic=False,
-    )
-    rec = make_small_recommender()
-    results = rec.recommend(user, k=2)
-
-    assert len(results) == 2
-    # Starter expectation: the pop, happy, high energy song should score higher
-    assert results[0].genre == "pop"
-    assert results[0].mood == "happy"
-
-
-def test_explain_recommendation_returns_non_empty_string():
-    user = UserProfile(
-        favorite_genre="pop",
-        favorite_mood="happy",
-        target_energy=0.8,
-        likes_acoustic=False,
-    )
-    rec = make_small_recommender()
-    song = rec.songs[0]
-
-    explanation = rec.explain_recommendation(user, song)
-    assert isinstance(explanation, str)
-    assert explanation.strip() != ""
+    user = {"genre": "pop", "mood": "happy", "energy": 0.8}
+    results = recommend_songs(user, songs, k=2)
+    assert results[0][0]["title"] == "Song B"
+    assert results[0][1] > results[1][1]

@@ -16,3 +16,6 @@ venv/
 
 # .env api file
 .env
+
+# logs
+logs/ 

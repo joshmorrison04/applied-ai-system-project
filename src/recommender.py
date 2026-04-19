@@ -1,57 +1,8 @@
-# Core recommendation engine: defines the Song and UserProfile data models,
-# loads song data from CSV, and implements the scoring logic used to generate recommendations.
+# Core recommendation engine: loads song data from CSV and implements
+# the scoring logic used to generate recommendations.
+
 import csv
-from typing import List, Dict, Tuple, Optional
-from dataclasses import dataclass
-
-
-@dataclass
-class Song:
-    """Represents a song and its attributes."""
-    id: int
-    title: str
-    artist: str
-    genre: str
-    mood: str
-    energy: float
-    tempo_bpm: float
-    valence: float
-    danceability: float
-    acousticness: float
-
-
-@dataclass
-class UserProfile:
-    """Represents a user's taste preferences."""
-    favorite_genre: str
-    favorite_mood: str
-    target_energy: float
-    likes_acoustic: bool
-
-
-class Recommender:
-    """OOP implementation of the recommendation logic."""
-
-    def __init__(self, songs: List[Song]):
-        self.songs = songs
-
-    def recommend(self, user: UserProfile, k: int = 5) -> List[Song]:
-        scored = []
-        for song in self.songs:
-            score, _ = score_song(
-                {"genre": user.favorite_genre, "mood": user.favorite_mood, "energy": user.target_energy},
-                {"genre": song.genre, "mood": song.mood, "energy": song.energy, "title": song.title}
-            )
-            scored.append((song, score))
-        scored.sort(key=lambda x: x[1], reverse=True)
-        return [s for s, _ in scored[:k]]
-
-    def explain_recommendation(self, user: UserProfile, song: Song) -> str:
-        _, reasons = score_song(
-            {"genre": user.favorite_genre, "mood": user.favorite_mood, "energy": user.target_energy},
-            {"genre": song.genre, "mood": song.mood, "energy": song.energy, "title": song.title}
-        )
-        return reasons
+from typing import List, Dict, Tuple
 
 
 def load_songs(csv_path: str) -> List[Dict]:

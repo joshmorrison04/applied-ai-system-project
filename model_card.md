@@ -1,57 +1,53 @@
-# Model Card - Music Recommender Simulation
+# Model Card — AI Music Recommender
 
 ## 1. Model Name
 
-> VibeFinder 1.0
-
----
+AI Music Recommender
 
 ## 2. Intended Use
 
-> This system suggests the top 5 songs from a small catalog based on a user's preferred genre, mood, and energy level. It is built for classroom exploration and learning about recommendation systems — not for real users or production use.
+This system provides personalized music recommendations based on natural language input. A user describes what kind of music they want (e.g., "I want chill jazz for studying"), and the system retrieves relevant songs from a curated dataset and uses Google Gemini to generate a conversational recommendation. It is intended for classroom demonstration and portfolio purposes only, not for production use with real users.
 
----
+## 3. How It Works
 
-## 3. How It Works (Short Explanation)
-
-> The system takes a user profile with three preferences: favorite genre, favorite mood, and a target energy level (0.0–1.0). It loops through every song in the catalog and calculates a score. A genre match adds 2.0 points, a mood match adds 1.0 point, and energy similarity adds up to 1.0 point based on how close the song's energy is to the user's target. Songs are sorted by score from highest to lowest, and the top 5 are returned as recommendations along with an explanation of why each scored the way it did.
-
----
+The system follows a RAG (Retrieval-Augmented Generation) pipeline. First, the user's natural language request is parsed into structured preferences — genre, mood, and energy level — using keyword-based matching. Then, the recommender scores every song in the dataset against those preferences: +2.0 points for a genre match, +1.0 for a mood match, and up to +1.0 based on how close the song's energy level is to what the user wants. The top 5 scoring songs are retrieved and passed to Google Gemini along with the user's original query. Gemini then writes a friendly, conversational recommendation explaining why each song fits. A confidence score is also calculated based on how many preferences were successfully parsed and how strong the top matches are.
 
 ## 4. Data
 
-> The dataset contains 20 songs in `data/songs.csv`. The original 10 were provided as starter data, and I added 10 more to increase genre and mood diversity. Genres represented include pop, lofi, rock, ambient, jazz, synthwave, indie pop, electronic, folk, r&b, alternative, funk, classical, world, and metal. Moods include happy, chill, intense, relaxed, moody, focused, energetic, and melancholy. The data mostly reflects a general listener's taste and doesn't represent any specific cultural or demographic group.
-
----
+The dataset consists of 56 songs stored in a CSV file. Each song has 10 attributes: ID, title, artist, genre, mood, energy, tempo, valence, danceability, and acousticness. The scoring logic currently uses only genre, mood, and energy. The dataset was expanded from an original set of 20 songs to include a wider range of genres (pop, rock, lofi, jazz, ambient, electronic, r&b, classical, metal, synthwave, folk, funk, alternative, world, indie pop, hip-hop, latin) and moods (happy, chill, relaxed, focused, intense, energetic, moody, melancholy). The dataset was curated by the developer and reflects a broad but not exhaustive range of musical styles. Some genres and regional music traditions are underrepresented or absent.
 
 ## 5. Strengths
 
-> The recommender works well for users whose preferences align clearly with songs in the catalog — for example, a "Chill Lofi" user gets Library Rain and Midnight Coding at the top, which feel intuitively right. The scoring logic is simple and fully transparent: you can see exactly why each song was recommended through the explanation string. This makes it easy to debug and understand, unlike black-box models.
-
----
+The system works well when the user provides clear, specific requests that align with keywords in the parser's dictionaries. For queries like "I want chill jazz for studying," the system correctly identifies genre (jazz), mood (focused), and energy (0.4), retrieves highly relevant songs, and generates a helpful recommendation with High confidence. The RAG architecture keeps recommendations grounded in real data — the AI can only recommend songs that exist in the dataset, preventing hallucination. The confidence scoring system provides useful transparency, letting users know when the system is less sure about its results. Logging provides a full audit trail of every interaction for debugging and reliability review.
 
 ## 6. Limitations and Bias
 
-> The system over-prioritizes genre because it carries the highest weight (2.0 out of a max ~4.0). This means a song in the user's preferred genre but with the wrong mood still outscores a perfect mood+energy match in a different genre. The dataset also has limited representation — genres like country, latin, and hip-hop are absent entirely, so users who prefer those genres get poor recommendations based solely on energy proximity. Additionally, the system treats all users identically in shape — it assumes everyone cares about genre > mood > energy in that exact order, which isn't realistic. The energy similarity metric also has no threshold, so a song with 0.01 energy difference scores almost identically to a perfect match, offering no meaningful differentiation at the top.
+The keyword-based parser is the biggest limitation. It relies on exact or near-exact matches to predefined dictionaries, so it misses synonyms, uncommon phrasings, and natural variations. For example, "happy" is recognized but "happiness" is not. "Relaxed" is recognized but "relaxing" had to be manually added after testing revealed the gap. This means the quality of recommendations depends heavily on whether the user happens to use words that are in the dictionaries.
 
----
+The dataset reflects the developer's musical knowledge and is biased toward Western, English-language music. Genres like K-pop, Afrobeats, reggaeton, and Bollywood are not represented, which means users who prefer those styles will get poor recommendations based solely on energy proximity rather than genuine relevance.
 
-## 7. Evaluation
+The scoring system treats genre as the most important factor (2.0 points vs 1.0 for mood), which means a song in the right genre but with the wrong mood will outscore a perfect mood match in a different genre. This weighting may not reflect every user's actual priorities.
 
-> I tested five user profiles: High-Energy Pop, Chill Lofi, Deep Intense Rock, and two edge cases — a user wanting ambient/melancholy at high energy, and a country fan (a genre not in the dataset). The first three profiles produced intuitive results — the top songs matched on genre, mood, and energy as expected. The edge cases revealed weaknesses: the country fan got recommendations based entirely on energy and mood with no genre relevance, and the ambient/melancholy/high-energy user surfaced a low-energy ambient song as the top pick because genre weight overpowered energy closeness. I also ran an experiment doubling the energy weight and halving genre, which produced more variety across profiles but less genre coherence.
+The system also depends on an external API (Google Gemini) which can experience rate limits, outages, or quota restrictions. During development, the Gemini 2.0 Flash model became unavailable on the free tier, requiring a switch to Gemini 2.5 Flash.
 
----
+## 7. Potential Misuse and Prevention
 
-## 8. Future Work
+The system itself poses low risk since it only recommends songs from a fixed, curated dataset. However, potential misuse scenarios include:
 
-> If I had more time, I would add support for weighted user preferences so each person could control how much genre vs mood vs energy matters to them. I would also expand the dataset significantly and include genres like hip-hop, latin, and country. Finally, I'd add a diversity mechanism so the system doesn't just return the 5 closest matches — it could mix in a "wildcard" song from a different genre to help users discover new music.
+Prompt injection — a user could try to manipulate the Gemini prompt to make the AI say something unrelated to music. The system mitigates this by constraining the prompt with clear instructions ("Using ONLY the songs listed above") and by validating input length (max 500 characters).
 
----
+Biased curation — if the dataset were intentionally filled with songs promoting harmful content, the system would surface those recommendations. This is mitigated by the developer curating the dataset manually and reviewing all song entries.
 
-## 9. Personal Reflection
+Over-reliance — a user might assume the system's recommendations represent the full landscape of music, when in reality it only knows about 56 songs. The confidence scoring helps signal when results may not be strong.
 
-> My biggest learning moment was seeing how much the weight values shape the entire experience. Just changing genre from 2.0 to 1.0 completely reshuffled the recommendations for edge-case users. It made me realize that real recommenders like Spotify are constantly tuning these kinds of knobs, and small changes can create filter bubbles or shut out entire genres.
->
-> Using AI tools helped me move fast — especially for generating the expanded dataset and structuring the scoring logic. But I had to double-check the math and make sure the weights actually reflected my design intent, not just whatever the AI defaulted to.
->
-> What surprised me most is how a simple three-feature scoring system can still produce results that "feel" right for straightforward profiles. But the edge cases showed where human judgment still matters — no amount of math captures what it means when someone wants "sad but energetic" music.
+## 8. Testing Results
+
+The system was tested across a range of scenarios: specific queries with clear genre/mood/energy keywords, vague queries with minimal information, empty and too-short inputs, and queries using words not in the keyword dictionaries. Input validation correctly blocked empty and too-short inputs. Confidence scoring accurately reflected recommendation quality — specific queries scored High (0.75+) while vague queries scored Low (below 0.45). The main failure mode was the parser returning None for all three preferences when the user's language didn't match any dictionary keywords, resulting in essentially random song selection. All runs were logged to recommender.log for review.
+
+## 9. AI Collaboration Reflection
+
+I used AI assistants (Claude and ChatGPT) throughout the development of this project.
+
+**Helpful suggestion:** When the Gemini API wasn't working due to quota and model availability issues, I was ready to abandon it and search for an entirely different API provider. Claude suggested simply trying a different Gemini model version (switching from gemini-2.0-flash to gemini-2.5-flash), which turned out to work immediately on the free tier. This saved significant time and kept the project on track instead of requiring me to learn a completely new API.
+
+**Flawed suggestion:** Early in development, the AI suggested using default values in the query parser — for example, defaulting to "pop" as the genre when the user didn't specify one. I realized this was a bad design choice because it would bias every vague query toward pop music, even if the user had no preference for pop at all. I changed the parser to return None for unspecified fields instead, and updated the scoring logic to skip attributes that are None. This was my own design decision that improved the system's fairness and accuracy.

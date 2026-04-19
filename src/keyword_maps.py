@@ -128,6 +128,7 @@ MOOD_KEYWORDS = {
     "vibes": "chill",
     "vibe": "chill",
     "vibing": "chill",
+    "happiness": "happy"
 }
 
 ENERGY_KEYWORDS = {
