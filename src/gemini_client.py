@@ -36,7 +36,8 @@ Using ONLY the songs listed above, write a short, conversational recommendation.
 For each song you mention, explain in plain language why it fits what the user asked for.
 Do not recommend songs that are not in the list above.
 Keep your response concise — no more than a short paragraph per song.
-If the matches seem weak, be honest and say the catalog may not have a perfect fit."""
+If the matches seem weak, be honest and say the catalog may not have a perfect fit.
+Format your response as a numbered list"""
 
     return prompt
 

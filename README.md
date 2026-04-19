@@ -53,55 +53,13 @@ The system follows a RAG (Retrieval-Augmented Generation) pipeline:
 ## Sample Interactions
 
 ### Example 1: Chill study music
-```
-Your request: I want chill jazz for studying
+![Example 1 — chill jazz for studying](assets/Example1.png)
 
-Parsed preferences:
-  genre=jazz, mood=chill, energy=0.4
+### Example 2: High-energy gym music
+![Example 2 — intense and heavy for the gym](assets/Example2.png)
 
-Retrieved songs:
-==================================================
-1. Coffee Shop Stories by Slow Stereo
-   Genre: jazz | Mood: relaxed | Energy: 0.37
-   Score: 2.98 | genre match (+2.0), energy similarity (+0.97)
-
-Confidence: 0.87 (High)
-
-AI Recommendation:
-Great choices for a chill study session! "Coffee Shop Stories" by Slow Stereo
-is a perfect fit — it's a relaxed jazz track with mellow energy that will
-keep you focused without being distracting...
-```
-
-### Example 2: High-energy workout music
-```
-Your request: Give me intense music for the gym
-
-Parsed preferences:
-  genre=None, mood=intense, energy=0.9
-
-Retrieved songs:
-==================================================
-1. Thunder Clap by Riot Signal
-   Genre: metal | Mood: intense | Energy: 0.98
-   Score: 1.92 | mood match (+1.0), energy similarity (+0.92)
-
-Confidence: 0.57 (Medium)
-
-AI Recommendation:
-If you're looking to fuel an intense gym session, these tracks should
-get your heart pumping! "Thunder Clap" by Riot Signal brings heavy metal
-energy at nearly max intensity...
-```
-
-### Example 3: Error handling in action
-```
-Your request: hi
-
-Input too short. Please provide a more detailed description.
-```
-
-*Note: Replace the sample outputs above with actual screenshots of your system runs. Save screenshots to the `assets` folder and reference them like: `![Example 1](assets/example1.png)`*
+### Example 3: Happy upbeat music
+![Example 3 — happy upbeat music](assets/Example3.png)
 
 ## Design Decisions
 
@@ -127,7 +85,7 @@ The biggest surprise was how much the parser limitations affected the overall sy
 
 ## Demo Walkthrough
 
-*A Loom video walkthrough of the system running end-to-end is available here: [INSERT LOOM LINK]*
+See the sample interactions above for end-to-end screenshots of the system running with different inputs.
 
 ## File Structure
 
