@@ -1,65 +1,65 @@
-id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness
-1,Sunrise City,Neon Echo,pop,happy,0.82,118,0.84,0.79,0.18
-2,Midnight Coding,LoRoom,lofi,chill,0.42,78,0.56,0.62,0.71
-3,Storm Runner,Voltline,rock,intense,0.91,152,0.48,0.66,0.10
-4,Library Rain,Paper Lanterns,lofi,chill,0.35,72,0.60,0.58,0.86
-5,Gym Hero,Max Pulse,pop,intense,0.93,132,0.77,0.88,0.05
-6,Spacewalk Thoughts,Orbit Bloom,ambient,chill,0.28,60,0.65,0.41,0.92
-7,Coffee Shop Stories,Slow Stereo,jazz,relaxed,0.37,90,0.71,0.54,0.89
-8,Night Drive Loop,Neon Echo,synthwave,moody,0.75,110,0.49,0.73,0.22
-9,Focus Flow,LoRoom,lofi,focused,0.40,80,0.59,0.60,0.78
-10,Rooftop Lights,Indigo Parade,indie pop,happy,0.76,124,0.81,0.82,0.35
-11,Electric Sunset,Nova Wave,electronic,energetic,0.88,128,0.72,0.85,0.12
-12,Rainy Pages,The Drifters,folk,melancholy,0.25,68,0.35,0.30,0.91
-13,Neon Rush,Blade Circuit,electronic,intense,0.95,145,0.60,0.78,0.05
-14,Golden Hour,Amber Skies,r&b,happy,0.55,96,0.80,0.70,0.40
-15,Hollow Echo,Glass Tide,alternative,melancholy,0.40,82,0.28,0.35,0.55
-16,Poolside Groove,Summer Collective,funk,relaxed,0.68,110,0.85,0.90,0.20
-17,Still Water,Mono Leaf,classical,focused,0.15,60,0.42,0.18,0.95
-18,Late Night Drive,Echo Park,synthwave,moody,0.70,118,0.50,0.65,0.15
-19,Desert Wind,Sahara Sound,world,chill,0.45,88,0.60,0.40,0.72
-20,Thunder Clap,Riot Signal,metal,intense,0.98,160,0.30,0.45,0.03
-21,Velvet Underground Dreams,The Cassette Kids,indie,melancholy,0.44,88,0.36,0.48,0.62
-22,Pulse of the City,Skyline Drift,electronic,energetic,0.87,134,0.70,0.83,0.08
-23,Morning Fog,Cedar & Ash,folk,chill,0.30,74,0.55,0.38,0.88
-24,Blaze Protocol,Ironfield,metal,intense,0.96,163,0.25,0.42,0.04
-25,Pastel Afternoon,Hana Bloom,lofi,relaxed,0.38,76,0.68,0.57,0.80
-26,Neon Cathedral,Parallax,synthwave,moody,0.72,112,0.44,0.69,0.18
-27,Silk & Static,Velour Jones,r&b,relaxed,0.52,94,0.76,0.72,0.43
-28,Crater Lake,Dusk Colony,ambient,chill,0.22,62,0.48,0.28,0.93
-29,Get Up Stand Tall,Brass Republic,funk,energetic,0.80,118,0.88,0.91,0.14
-30,Shattered Aria,Obsidian Choir,classical,melancholy,0.18,58,0.22,0.15,0.97
-31,Afterglow Highway,Coral Drive,pop,happy,0.79,122,0.86,0.80,0.22
-32,Subzero,Circuit Wraith,electronic,intense,0.92,148,0.38,0.74,0.06
-33,Wildwood Trail,Ember & Pine,folk,relaxed,0.34,80,0.62,0.44,0.85
-34,Diamond Static,Rose Gold Riot,indie pop,moody,0.58,102,0.52,0.61,0.37
-35,Quantum Drift,Axon Sky,electronic,focused,0.65,126,0.55,0.77,0.11
-36,Tenderness,Marcus Laine,jazz,happy,0.40,96,0.78,0.58,0.82
-37,Crimson Peak,Wolfhound,rock,intense,0.89,144,0.40,0.62,0.12
-38,Lavender Haze Drive,Soft Circuit,synthwave,chill,0.60,108,0.60,0.70,0.25
-39,Paper Boats,Wren Hollow,indie,melancholy,0.32,86,0.30,0.35,0.74
-40,Street Percussion,Groove Division,funk,energetic,0.83,122,0.84,0.93,0.09
-41,Between the Clouds,Still Scape,ambient,focused,0.20,64,0.50,0.22,0.91
-42,Carnival of Ghosts,Phantom Brass,jazz,moody,0.48,104,0.42,0.55,0.67
-43,Arcade Summer,Neon Echo,pop,happy,0.85,130,0.90,0.86,0.10
-44,Iron Ritual,Molten Sky,metal,intense,0.97,158,0.28,0.40,0.03
-45,Shoreline Lullaby,Blue Marrow,r&b,chill,0.46,88,0.70,0.64,0.53
-46,Café Equations,LoRoom,lofi,focused,0.37,79,0.57,0.59,0.82
-47,Horizons Unfolding,Vast Current,ambient,relaxed,0.25,66,0.58,0.30,0.90
-48,Hollow Signal,Grey Bloom,alternative,moody,0.50,98,0.33,0.48,0.50
-49,Sundial,Copper Coast,indie,happy,0.67,116,0.79,0.71,0.41
-50,Starfield Ballad,Nova Rime,classical,relaxed,0.14,56,0.40,0.12,0.96
-51,Full Send,Voltage Atlas,rock,energetic,0.90,150,0.60,0.68,0.07
-52,Rain on the Freeway,Slow Stereo,jazz,melancholy,0.33,84,0.38,0.45,0.79
-53,Glitter Protocol,Prism Pop,pop,energetic,0.88,136,0.82,0.87,0.08
-54,Deep Forest Signal,Mycelium Tone,ambient,chill,0.24,60,0.52,0.25,0.94
-55,Dusk Circuit,Parallax,synthwave,moody,0.74,114,0.46,0.71,0.17
-56,Overflow,Static Ember,electronic,intense,0.93,142,0.50,0.80,0.05
-57,City Cipher,Northline Crew,hip hop,energetic,0.84,96,0.72,0.86,0.12
-58,Midnight Freestyle,Velvet Blocks,hip hop,moody,0.62,88,0.44,0.78,0.18
-59,Concrete Poetry,Atlas Verse,hip hop,focused,0.58,90,0.53,0.74,0.22
-60,Bassline District,808 Syndicate,hip hop,intense,0.91,142,0.57,0.82,0.06
-61,Golden Era Tape,Crate Scholars,hip hop,happy,0.66,94,0.81,0.76,0.20
-62,Night Bus Stories,Southbound Mic,hip hop,melancholy,0.49,84,0.32,0.70,0.28
-63,Run the Block,Iron Tempo,hip hop,energetic,0.88,138,0.68,0.84,0.07
-64,Loft Session,Paper Rhymes,hip hop,chill,0.46,82,0.61,0.72,0.30
+id,title,artist,genre,mood,energy
+1,Sunrise City,Neon Echo,pop,happy,0.82
+2,Midnight Coding,LoRoom,lofi,chill,0.42
+3,Storm Runner,Voltline,rock,intense,0.91
+4,Library Rain,Paper Lanterns,lofi,chill,0.35
+5,Gym Hero,Max Pulse,pop,intense,0.93
+6,Spacewalk Thoughts,Orbit Bloom,ambient,chill,0.28
+7,Coffee Shop Stories,Slow Stereo,jazz,relaxed,0.37
+8,Night Drive Loop,Neon Echo,synthwave,moody,0.75
+9,Focus Flow,LoRoom,lofi,focused,0.40
+10,Rooftop Lights,Indigo Parade,indie pop,happy,0.76
+11,Electric Sunset,Nova Wave,electronic,energetic,0.88
+12,Rainy Pages,The Drifters,folk,melancholy,0.25
+13,Neon Rush,Blade Circuit,electronic,intense,0.95
+14,Golden Hour,Amber Skies,r&b,happy,0.55
+15,Hollow Echo,Glass Tide,alternative,melancholy,0.40
+16,Poolside Groove,Summer Collective,funk,relaxed,0.68
+17,Still Water,Mono Leaf,classical,focused,0.15
+18,Late Night Drive,Echo Park,synthwave,moody,0.70
+19,Desert Wind,Sahara Sound,world,chill,0.45
+20,Thunder Clap,Riot Signal,metal,intense,0.98
+21,Velvet Underground Dreams,The Cassette Kids,indie,melancholy,0.44
+22,Pulse of the City,Skyline Drift,electronic,energetic,0.87
+23,Morning Fog,Cedar & Ash,folk,chill,0.30
+24,Blaze Protocol,Ironfield,metal,intense,0.96
+25,Pastel Afternoon,Hana Bloom,lofi,relaxed,0.38
+26,Neon Cathedral,Parallax,synthwave,moody,0.72
+27,Silk & Static,Velour Jones,r&b,relaxed,0.52
+28,Crater Lake,Dusk Colony,ambient,chill,0.22
+29,Get Up Stand Tall,Brass Republic,funk,energetic,0.80
+30,Shattered Aria,Obsidian Choir,classical,melancholy,0.18
+31,Afterglow Highway,Coral Drive,pop,happy,0.79
+32,Subzero,Circuit Wraith,electronic,intense,0.92
+33,Wildwood Trail,Ember & Pine,folk,relaxed,0.34
+34,Diamond Static,Rose Gold Riot,indie pop,moody,0.58
+35,Quantum Drift,Axon Sky,electronic,focused,0.65
+36,Tenderness,Marcus Laine,jazz,happy,0.40
+37,Crimson Peak,Wolfhound,rock,intense,0.89
+38,Lavender Haze Drive,Soft Circuit,synthwave,chill,0.60
+39,Paper Boats,Wren Hollow,indie,melancholy,0.32
+40,Street Percussion,Groove Division,funk,energetic,0.83
+41,Between the Clouds,Still Scape,ambient,focused,0.20
+42,Carnival of Ghosts,Phantom Brass,jazz,moody,0.48
+43,Arcade Summer,Neon Echo,pop,happy,0.85
+44,Iron Ritual,Molten Sky,metal,intense,0.97
+45,Shoreline Lullaby,Blue Marrow,r&b,chill,0.46
+46,Café Equations,LoRoom,lofi,focused,0.37
+47,Horizons Unfolding,Vast Current,ambient,relaxed,0.25
+48,Hollow Signal,Grey Bloom,alternative,moody,0.50
+49,Sundial,Copper Coast,indie,happy,0.67
+50,Starfield Ballad,Nova Rime,classical,relaxed,0.14
+51,Full Send,Voltage Atlas,rock,energetic,0.90
+52,Rain on the Freeway,Slow Stereo,jazz,melancholy,0.33
+53,Glitter Protocol,Prism Pop,pop,energetic,0.88
+54,Deep Forest Signal,Mycelium Tone,ambient,chill,0.24
+55,Dusk Circuit,Parallax,synthwave,moody,0.74
+56,Overflow,Static Ember,electronic,intense,0.93
+57,City Cipher,Northline Crew,hip hop,energetic,0.84
+58,Midnight Freestyle,Velvet Blocks,hip hop,moody,0.62
+59,Concrete Poetry,Atlas Verse,hip hop,focused,0.58
+60,Bassline District,808 Syndicate,hip hop,intense,0.91
+61,Golden Era Tape,Crate Scholars,hip hop,happy,0.66
+62,Night Bus Stories,Southbound Mic,hip hop,melancholy,0.49
+63,Run the Block,Iron Tempo,hip hop,energetic,0.88
+64,Loft Session,Paper Rhymes,hip hop,chill,0.46

@@ -13,10 +13,6 @@ def load_songs(csv_path: str) -> List[Dict]:
         for row in reader:
             row['id'] = int(row['id'])
             row['energy'] = float(row['energy'])
-            row['tempo_bpm'] = float(row['tempo_bpm'])
-            row['valence'] = float(row['valence'])
-            row['danceability'] = float(row['danceability'])
-            row['acousticness'] = float(row['acousticness'])
             songs.append(row)
     print(f"Loaded songs: {len(songs)}")
     return songs
